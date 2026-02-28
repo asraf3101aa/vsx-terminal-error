@@ -1,6 +1,6 @@
 {
   "name": "terminal-error-sound",
-  "displayName": "terminal-error-sound",
+  "displayName": "Terminal Error Sound",
   "description": "Plays a sound whenever a command fails in the terminal.",
   "version": "0.0.1",
   "engines": {
@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "terminal-error-sound.helloWorld",
-        "title": "Hello World"
+        "command": "terminalErrorSound.enable",
+        "title": "Enable Terminal Error Sound"
+      },
+      {
+        "command": "terminalErrorSound.disable",
+        "title": "Disable Terminal Error Sound"
       }
     ]
   },
@@ -36,5 +40,8 @@
     "typescript": "^5.9.3",
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2"
+  },
+  "dependencies": {
+    "@types/play-sound": "^1.1.2"
   }
 }
