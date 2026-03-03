@@ -4,7 +4,7 @@
   "description": "Plays a sound whenever a command fails in the terminal.",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.109.0"
+    "vscode": "^1.107.0"
   },
   "categories": [
     "Other"
@@ -12,6 +12,36 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Terminal Error Sound",
+      "properties": {
+        "terminalErrorSound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable all terminal error sounds."
+        },
+        "terminalErrorSound.playOnDiagnosticsError": {
+          "type": "boolean",
+          "default": false,
+          "description": "Play sound when new diagnostic errors (red squigglies) appear in the editor."
+        },
+        "terminalErrorSound.playOnTaskFailure": {
+          "type": "boolean",
+          "default": true,
+          "description": "Play sound when a terminal process exits with a non-zero code."
+        },
+        "terminalErrorSound.playOnDebugFailure": {
+          "type": "boolean",
+          "default": false,
+          "description": "Play sound when a debug session fails."
+        },
+        "terminalErrorSound.cooldownMs": {
+          "type": "number",
+          "default": 1000,
+          "description": "Minimum time (in milliseconds) between sounds to prevent overlapping playback."
+        }
+      }
+    },
     "commands": [
       {
         "command": "terminalErrorSound.enable",
@@ -20,6 +50,10 @@
       {
         "command": "terminalErrorSound.disable",
         "title": "Disable Terminal Error Sound"
+      },
+      {
+        "command": "terminalErrorSound.testSound",
+        "title": "Test Terminal Error Sound"
       }
     ]
   },
@@ -32,7 +66,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.109.0",
+    "@types/vscode": "^1.107.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
     "typescript-eslint": "^8.54.0",
@@ -41,7 +75,5 @@
     "@vscode/test-cli": "^0.0.12",
     "@vscode/test-electron": "^2.5.2"
   },
-  "dependencies": {
-    "@types/play-sound": "^1.1.2"
-  }
+  "dependencies": {}
 }
